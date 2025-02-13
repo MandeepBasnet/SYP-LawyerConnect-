@@ -1,10 +1,15 @@
 import React from "react";
-
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
 
   const navigate = useNavigate();
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [token, setToken] = useState(true);
+
+
   return (
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
       <img className="w-44 cursor-pointer" src="" alt="LawyerConnect Logo" />
@@ -27,7 +32,12 @@ const NavigationBar = () => {
         </NavLink>
       </ul>
       <div className="flex items-center gap-4 ">
-        <button onClick={()=>navigate('/login')} className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block">Create Account</button>
+        {
+          token 
+          ?<div></div>
+          :<button onClick={()=>navigate('/login')} className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block">Create Account</button>
+        }
+
       </div>
     </div>
   );
