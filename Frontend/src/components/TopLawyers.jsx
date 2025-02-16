@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
 
 const TopLawyers = () => {
-
   const navigate = useNavigate();
-  const lawyers = useContext(AppContext)
+  const { lawyers } = useContext(AppContext);
+
+  if (!lawyers) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10'>
