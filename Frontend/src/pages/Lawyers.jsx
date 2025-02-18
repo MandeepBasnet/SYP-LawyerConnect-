@@ -23,6 +23,12 @@ const Lawyers = () => {
     applyFilter()
   }, [lawyers, practice])
 
+  const getPracticeClassName = (practiceName) => {
+    return `w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
+      practice === practiceName ? "bg-primary text-white" : ""
+    }`
+  }
+
   console.log(practice)
 
   return (
@@ -30,12 +36,12 @@ const Lawyers = () => {
       <p className='text-gray-600'>Browse through practicing field of our lawyers.</p>
       <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
         <div className='flex flex-col gap-4 text-sm text-gray-600'>
-          <p onClick={() => practice === 'Property Law' ? navigate('/lawyers') : navigate('/lawyers/Property Law')} className={'w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${practice === "Property Law" ? "bg-primary text-white" : ""}'}>Property Law</p>
-          <p onClick={() => practice === 'Labour Law' ? navigate('/lawyers') : navigate('/lawyers/Labour Law')} className={'w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${practice === "Labour Law" ? "bg-primary text-white" : ""}'}>Labour Law</p>
-          <p onClick={() => practice === 'Criminal Law' ? navigate('/lawyers') : navigate('/lawyers/Criminal Law')} className={'w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${practice === "Criminal Law" ? "bg-primary text-white" : ""}'}>Criminal Law</p>
-          <p onClick={() => practice === 'International Law' ? navigate('/lawyers') : navigate('/lawyers/International Law')} className={'w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${practice === "International Law" ? "bg-primary text-white" : ""}'}>International Law</p>
-          <p onClick={() => practice === 'Contract Law' ? navigate('/lawyers') : navigate('/lawyers/Contract Law')} className={'w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${practice === "Contract Law" ? "bg-primary text-white" : ""}'}>Contract Law</p>
-          <p onClick={() => practice === 'Family Law' ? navigate('/lawyers') : navigate('/lawyers/Family Law')} className={'w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${practice === "Family Law" ? "bg-primary text-white" : ""}'}>Family Law</p>
+          <p onClick={() => practice === 'Property Law' ? navigate('/lawyers') : navigate('/lawyers/Property Law')} className={getPracticeClassName("Property Law")}>Property Law</p>
+          <p onClick={() => practice === 'Labour Law' ? navigate('/lawyers') : navigate('/lawyers/Labour Law')} className={getPracticeClassName("Labour Law")}>Labour Law</p>
+          <p onClick={() => practice === 'Criminal Law' ? navigate('/lawyers') : navigate('/lawyers/Criminal Law')} className={getPracticeClassName("Criminal Law")}>Criminal Law</p>
+          <p onClick={() => practice === 'International Law' ? navigate('/lawyers') : navigate('/lawyers/International Law')} className={getPracticeClassName("International Law")}>International Law</p>
+          <p onClick={() => practice === 'Contract Law' ? navigate('/lawyers') : navigate('/lawyers/Contract Law')} className={getPracticeClassName("Contract Law")}>Contract Law</p>
+          <p onClick={() => practice === 'Family Law' ? navigate('/lawyers') : navigate('/lawyers/Family Law')} className={getPracticeClassName("Family Law")}>Family Law</p>
         </div>
         <div className='w-full grid grid-cols-auto gap-4 gap-y-6'>
           {
