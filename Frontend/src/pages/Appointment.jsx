@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useContext, useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
@@ -5,22 +6,22 @@ import { assets } from '../assets/assets';
 
 const Appointment = () => {
 
-  const {lawId} = useParams();
+  const {lawyerId} = useParams();
   const {lawyers, currencySymbol} = useContext(AppContext);
 
-  const [lawInfo,setLawInfo] = useState(null);
-
-  const fetchLawInfo = async () => {
-    const lawInfo = lawyers.find(law => law._id === lawId)
-    setLawInfo(lawInfo)
-    console.log();
-  }
+  const [lawInfo, setLawInfo] = useState(null);
 
   useEffect(() => {
-    fetchLawInfo()
-  }, [lawyers,lawId])
+    // Move fetchLawInfo function inside useEffect
+    const fetchLawInfo = () => {
+      const lawInfo = lawyers.find(law => law._id === lawyerId);
+      setLawInfo(lawInfo);
+    };
+    
+    fetchLawInfo();
+  }, [lawyers, lawyerId]); // These are now the only dependencies needed
 
-  return lawInfo &&(
+  return lawInfo && (
     <div>
       {/*Lawyers Image*/}
       <div className='flex flex-col sm:flex-row gap-4'>
