@@ -10,7 +10,7 @@ const Login = () => {
   const [name, setName] = useState('')
   return (
     <form className='min-h-[80vh] flex items-center'>
-      <div className='flex flec-col gap-4 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-zinc-600 shadow-lg'>
+      <div className='flex flex-col gap-4 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-zinc-600 shadow-lg'>
         <p className='text-2xl font-semibold'>{state === 'Sign Up' ? "Create Account" : 'Login'}</p>
         <p>Please {state === 'Sign Up' ? "sign up" : 'log in'} to book apointment</p>
         {
