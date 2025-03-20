@@ -7,6 +7,7 @@ const Lawyers = () => {
 
   const { practice } = useParams()
   const [filterLaw,setFilterLaw] = useState([])
+  const [showFilter, setShowFilter] = useState(false)
   const navigate = useNavigate()
 
   const {lawyers} = useContext(AppContext)
@@ -35,7 +36,8 @@ const Lawyers = () => {
     <div>
       <p className='text-gray-600'>Browse through practicing field of our lawyers.</p>
       <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
-        <div className='flex flex-col gap-4 text-sm text-gray-600'>
+        <button className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${showFilter ? 'bg-primary text-white' : ''}`} onClick={()=>setShowFilter(prev => !prev)}>Filters</button>
+        <div className={`flex-col gap-4 text-sm text-gray-600 ${showFilter ? 'flex' : 'hidden sm:flex'}`}>
           <p onClick={() => practice === 'Property Law' ? navigate('/lawyers') : navigate('/lawyers/Property Law')} className={getPracticeClassName("Property Law")}>Property Law</p>
           <p onClick={() => practice === 'Labour Law' ? navigate('/lawyers') : navigate('/lawyers/Labour Law')} className={getPracticeClassName("Labour Law")}>Labour Law</p>
           <p onClick={() => practice === 'Criminal Law' ? navigate('/lawyers') : navigate('/lawyers/Criminal Law')} className={getPracticeClassName("Criminal Law")}>Criminal Law</p>
