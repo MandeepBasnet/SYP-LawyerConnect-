@@ -17,6 +17,6 @@ userRouter.post('/book-appointment',authUser, bookAppointment)
 
 userRouter.get('/my-appointments',authUser, listAppointment)
 
-userRouter.post('/cancel-appointments',authUser, cancelAppointment)
+userRouter.post('/cancel-appointment',authUser, cancelAppointment)
 
 export default userRouter
