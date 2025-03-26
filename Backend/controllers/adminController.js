@@ -127,6 +127,19 @@ const loginAdmin = async (req, res) => {
   }
 }
 
+// API to get all lawyers list for admin panel
+const allLawyers = async (req, res) =>{
+  try {
+    const lawyers = await lawyerModel.find({}).select('-password')
+    res.json({ success: true, lawyers })
+    
+  } catch (error) {
+    console.log(error)
+    res.json({ success: false, message: error.message })
+    
+  }
+}
 
-export { addlawyer, loginAdmin }
+
+export { addlawyer, loginAdmin, allLawyers }
 
