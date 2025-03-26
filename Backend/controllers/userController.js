@@ -51,7 +51,6 @@ const registerUser = async (req, res) => {
 };
 
 //API for user login
-//API for user login
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
