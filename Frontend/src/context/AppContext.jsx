@@ -52,7 +52,7 @@ export const AppContextProvider = ({ children }) => {
 
     // Create the dynamic context value object that will be provided
     const contextValue = {
-      lawyers,
+      lawyers, getLawyersData,
       currencySymbol: '$',
       token, setToken,
       backendUrl,
