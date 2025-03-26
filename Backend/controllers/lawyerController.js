@@ -1,4 +1,4 @@
-import lawyerModel from "../models/lawyerModel"
+import lawyerModel from "../models/lawyerModel.js"
 
 
 const changeAvailability = async (req, res) => {
