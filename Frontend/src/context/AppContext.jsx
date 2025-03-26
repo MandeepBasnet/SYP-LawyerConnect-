@@ -17,12 +17,10 @@ export const appContextValue = {
 export const AppContextProvider = ({ children }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [lawyers, setLawyers] = useState([]);
+  const [token,setToken] = useState(localStorage.getItem('token')? localStorage.getItem('token'):false);
+  const [userData, setUserData] = useState(false);
   
-  // Create the dynamic context value object that will be provided
-  const contextValue = {
-    lawyers,
-    currencySymbol: '$'
-  };
+
 
   const getLawyersData = async () => {
     try {
@@ -38,9 +36,41 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
+  const loadUserProfileData = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + '/api/user/get-profile', { headers: { token } });
+      if (data.success) {
+        setUserData(data.userData);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+    // Create the dynamic context value object that will be provided
+    const contextValue = {
+      lawyers,
+      currencySymbol: '$',
+      token, setToken,
+      backendUrl,
+      userData,setUserData,
+      loadUserProfileData
+    };
+
   useEffect(() => {
     getLawyersData();
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      loadUserProfileData();
+    } else {
+      setUserData(false);
+    }
+  }, [token]);
 
   return (
     <AppContext.Provider value={contextValue}>
